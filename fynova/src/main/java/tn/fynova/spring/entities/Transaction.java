@@ -1,6 +1,7 @@
 package tn.fynova.spring.entities;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -16,15 +17,50 @@ public class Transaction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int transaction_id;
+	
 	@Temporal(TemporalType.DATE)
 	private Date transaction_date;
+
 	private float transaction_amount;
 	
 	@Enumerated
 	private Operation transaction_type;
 	
-	@ManyToOne
-	private Account transaction_account;
+    @ManyToOne
+	private Credit transaction_credit;
+
+	public int getTransaction_id() {
+		return transaction_id;
+	}
+
+	public void setTransaction_id(int transaction_id) {
+		this.transaction_id = transaction_id;
+	}
+
+	public Date getTransaction_date() {
+		return transaction_date;
+	}
+
+	public void setTransaction_date(Date transaction_date) {
+		this.transaction_date = transaction_date;
+	}
+
+	public float getTransaction_amount() {
+		return transaction_amount;
+	}
+
+	public void setTransaction_amount(float transaction_amount) {
+		this.transaction_amount = transaction_amount;
+	}
+
+	public Operation getTransaction_type() {
+		return transaction_type;
+	}
+
+	public void setTransaction_type(Operation transaction_type) {
+		this.transaction_type = transaction_type;
+	}
+
 	
 	
 	

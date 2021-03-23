@@ -3,9 +3,9 @@ package tn.fynova.spring.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tn.fynova.spring.entities.User;
-
+import tn.fynova.spring.entities.Transaction;
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+
+public interface TransactionRepository extends CrudRepository<Transaction,Integer> {
 
 }

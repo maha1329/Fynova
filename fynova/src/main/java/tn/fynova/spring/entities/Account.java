@@ -1,6 +1,7 @@
 package tn.fynova.spring.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,13 +26,54 @@ public class Account implements Serializable {
 	@Enumerated
 	private AccountType account_type;
 	
+	public int getAccount_id() {
+		return account_id;
+	}
+
+	public void setAccount_id(int account_id) {
+		this.account_id = account_id;
+	}
+
+	public String getAccount_balance() {
+		return account_balance;
+	}
+
+	public void setAccount_balance(String account_balance) {
+		this.account_balance = account_balance;
+	}
+
+	public Date getAccount_creationDate() {
+		return account_creationDate;
+	}
+
+	public void setAccount_creationDate(Date account_creationDate) {
+		this.account_creationDate = account_creationDate;
+	}
+
+	public AccountType getAccount_type() {
+		return account_type;
+	}
+
+	public void setAccount_type(AccountType account_type) {
+		this.account_type = account_type;
+	}
+
+	public User getAccount_user() {
+		return account_user;
+	}
+
+	public void setAccount_user(User account_user) {
+		this.account_user = account_user;
+	}
+
+	
 	@ManyToOne
 	private User account_user;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="credit_account")
 	private List<Credit> account_credits;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
-	private List<Transaction> account_transactions;
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
+	//private List<Transaction> account_transactions;
 	
 }

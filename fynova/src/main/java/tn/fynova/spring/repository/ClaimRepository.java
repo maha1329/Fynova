@@ -3,9 +3,12 @@ package tn.fynova.spring.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tn.fynova.spring.entities.User;
+import tn.fynova.spring.entities.Claim;
+
+
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+
+public interface ClaimRepository extends CrudRepository<Claim, Integer> {
 
 }
