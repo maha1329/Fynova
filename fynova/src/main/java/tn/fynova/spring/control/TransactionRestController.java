@@ -37,6 +37,7 @@ public class TransactionRestController {
 	@GetMapping("/all")
 	@ResponseBody
 	public List<Transaction> getTransaction (){
+
 	List<Transaction> list =  transService.retrieveAllTransactions();
 	return list;
 	}
@@ -66,7 +67,7 @@ public class TransactionRestController {
 		Transaction t =new Transaction(d,sum,Operation.debit);
         t.setTransaction_credit(c);
         t.setNbreC(nbreC);
-        t.setAmountC(amount);
+        t. setAmountC(amount);
 		transService.addTransaction(t);
 		return true;
 	}
