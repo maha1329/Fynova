@@ -17,16 +17,23 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 public class User implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int user_id;
+	
 	private String user_password;
+	
 	private String user_email;
+	
 	private int user_phone;
 	
 	private String user_firstname;
+	
 	private String user_lastname;
+	
 	private int user_cin;
+	
 	@Enumerated
 	private Grade employee_grade;
 	
@@ -38,17 +45,18 @@ public class User implements Serializable{
 	
     private String job;
 	
-	
 	@Enumerated(EnumType.STRING)
 	private Origin customer_origin;
 
 	private int association_fiscalNumber;
 	
 	private String association_name;
+	
 	private String association_description;
 	
 	@Temporal(TemporalType.DATE)
 	private Date association_fondationDate;
+	
 	private int association_customersNumber;
 	
 	
@@ -63,6 +71,24 @@ public class User implements Serializable{
 	
 	
 	
+	public List<Claim> getUser_claims() {
+		return user_claims;
+	}
+	public void setUser_claims(List<Claim> user_claims) {
+		this.user_claims = user_claims;
+	}
+	public List<Account> getUser_accounts() {
+		return user_accounts;
+	}
+	public void setUser_accounts(List<Account> user_accounts) {
+		this.user_accounts = user_accounts;
+	}
+	public List<Project> getUser_projects() {
+		return user_projects;
+	}
+	public void setUser_projects(List<Project> user_projects) {
+		this.user_projects = user_projects;
+	}
 	public int getUser_id() {
 		return user_id;
 	}

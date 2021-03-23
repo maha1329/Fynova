@@ -1,12 +1,18 @@
 package tn.fynova.spring.service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import tn.fynova.spring.entities.Credit;
 import tn.fynova.spring.entities.Transaction;
 import tn.fynova.spring.repository.TransactionRepository;
+@Service
+@Transactional
 
 public class TransactionServiceImpl implements ITransactionService{
 	
@@ -26,14 +32,17 @@ public class TransactionServiceImpl implements ITransactionService{
 
 	@Override
 	public List<Transaction> retrieveAllTransactions() {
-		List<Transaction> transaction = (List<Transaction>)transactionRepository.findAll();
+		List<Transaction> transaction = (List<Transaction>) transactionRepository.findAll();
 		return transaction;
 	}
 
 	@Override
-	public Optional<Transaction> retrieveTransactions(int id) {
-		Optional<Transaction>  transaction = transactionRepository.findById(id);
-		return transaction;
+	public Transaction retrieveTransactions(int id) {
+        
+		Optional<Transaction> TransOptional=transactionRepository.findById(id);
+	    Transaction t=TransOptional.get();	        
+		return t;
+		
 	}
 
 }

@@ -29,6 +29,46 @@ public class Transaction implements Serializable {
     @ManyToOne
 	private Credit transaction_credit;
 
+    private int nbreC;
+    private float amountC;
+    
+    
+	public int getNbreC() {
+		return nbreC;
+	}
+
+	public void setNbreC(int nbreC) {
+		this.nbreC = nbreC;
+	}
+
+	public float getAmountC() {
+		return amountC;
+	}
+
+	public void setAmountC(float amountC) {
+		this.amountC = amountC;
+	}
+
+	public Credit getTransaction_credit() {
+		return transaction_credit;
+	}
+
+	public void setTransaction_credit(Credit transaction_credit) {
+		this.transaction_credit = transaction_credit;
+	}
+
+	public Transaction(Date transaction_date, float transaction_amount, Operation transaction_type) {
+		super();
+		this.transaction_date = transaction_date;
+		this.transaction_amount = transaction_amount;
+		this.transaction_type = transaction_type;
+	}
+	
+
+	public Transaction() {
+		super();
+	}
+
 	public int getTransaction_id() {
 		return transaction_id;
 	}

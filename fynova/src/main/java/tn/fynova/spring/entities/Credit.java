@@ -16,8 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 public class Credit implements Serializable {
-	@Id
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int credit_id;
 	
