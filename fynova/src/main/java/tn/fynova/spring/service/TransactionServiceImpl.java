@@ -2,9 +2,11 @@ package tn.fynova.spring.service;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +45,13 @@ public class TransactionServiceImpl implements ITransactionService{
 	    Transaction t=TransOptional.get();	        
 		return t;
 		
+	}
+
+	@Override
+	public List<Transaction> listAll() {
+		 
+		        return transactionRepository.findAll(Sort.by("transactionDate").ascending());
+		    
 	}
 
 }

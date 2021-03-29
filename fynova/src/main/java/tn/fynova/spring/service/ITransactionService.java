@@ -16,6 +16,6 @@ public interface ITransactionService {
 
 	Transaction retrieveTransactions(int id);
 
-	 
+	  List<Transaction> listAll();
 
 }

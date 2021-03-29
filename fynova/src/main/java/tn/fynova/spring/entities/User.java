@@ -26,9 +26,9 @@ public class User implements Serializable{
 	
 	private String user_email;
 	
-	private int user_phone;
+	private String user_phone;
 	
-	private String user_firstname;
+	private String firstname;
 	
 	private String user_lastname;
 	
@@ -71,6 +71,12 @@ public class User implements Serializable{
 	
 	
 	
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 	public List<Claim> getUser_claims() {
 		return user_claims;
 	}
@@ -107,18 +113,14 @@ public class User implements Serializable{
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-	public int getUser_phone() {
+	
+	public String getUser_phone() {
 		return user_phone;
 	}
-	public void setUser_phone(int user_phone) {
+	public void setUser_phone(String user_phone) {
 		this.user_phone = user_phone;
 	}
-	public String getUser_firstname() {
-		return user_firstname;
-	}
-	public void setUser_firstname(String user_firstname) {
-		this.user_firstname = user_firstname;
-	}
+	
 	public String getUser_lastname() {
 		return user_lastname;
 	}

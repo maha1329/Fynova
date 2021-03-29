@@ -15,55 +15,64 @@ import javax.persistence.TemporalType;
 public class Project implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int project_id;
-	private String project_name;
-	private String project_description;
-	private float project_cost;
+	private int projectid;
+	private String projectname;
+	private String projectdescription;
+	private float projectcost;
 	
 	@Temporal(TemporalType.DATE)
-	private Date project_date;
+	private Date projectdate;
 
 	@ManyToOne
 	private User user_project;
 	
-	public int getProject_id() {
-		return project_id;
+	
+	public int getProjectid() {
+		return projectid;
 	}
 
-	public void setProject_id(int project_id) {
-		this.project_id = project_id;
+	public void setProjectid(int projectid) {
+		this.projectid = projectid;
 	}
 
-	public String getProject_name() {
-		return project_name;
+	public String getProjectname() {
+		return projectname;
 	}
 
-	public void setProject_name(String project_name) {
-		this.project_name = project_name;
+	public void setProjectname(String projectname) {
+		this.projectname = projectname;
 	}
 
-	public String getProject_description() {
-		return project_description;
+	public String getProjectdescription() {
+		return projectdescription;
 	}
 
-	public void setProject_description(String project_description) {
-		this.project_description = project_description;
+	public void setProjectdescription(String projectdescription) {
+		this.projectdescription = projectdescription;
 	}
 
-	public float getProject_cost() {
-		return project_cost;
+	public float getProjectcost() {
+		return projectcost;
 	}
 
-	public void setProject_cost(float project_cost) {
-		this.project_cost = project_cost;
+	public void setProjectcost(float projectcost) {
+		this.projectcost = projectcost;
 	}
 
-	public Date getProject_date() {
-		return project_date;
+	public Date getProjectdate() {
+		return projectdate;
 	}
 
-	public void setProject_date(Date project_date) {
-		this.project_date = project_date;
+	public void setProjectdate(Date projectdate) {
+		this.projectdate = projectdate;
+	}
+
+	public User getUser_project() {
+		return user_project;
+	}
+
+	public void setUser_project(User user_project) {
+		this.user_project = user_project;
 	}
 	
 	
