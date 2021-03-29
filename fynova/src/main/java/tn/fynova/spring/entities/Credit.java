@@ -16,8 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 public class Credit implements Serializable {
-	@Id
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int credit_id;
 	
@@ -34,8 +34,8 @@ public class Credit implements Serializable {
 	@ManyToOne
 	private Account credit_account;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_credit")
-	private List<Transaction> transaction_credit;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="transactionCredit")
+	private List<Transaction> transactionCredit;
 	
 	public int getCredit_id() {
 		return credit_id;

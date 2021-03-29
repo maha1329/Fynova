@@ -5,11 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tn.fynova.spring.entities.Account;
 import tn.fynova.spring.repository.AccountRepository;
 
 @Service
+@Transactional
+
 public class AccountServiceImpl implements IAccountService {
 	@Autowired
 	AccountRepository accountRepository;
