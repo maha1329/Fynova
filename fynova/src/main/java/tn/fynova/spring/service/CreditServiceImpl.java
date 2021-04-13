@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tn.fynova.spring.entities.Credit;
 import tn.fynova.spring.repository.CreditRepository;
+@Service
+@Transactional
 
 public class CreditServiceImpl implements ICreditService{
 	@Autowired 

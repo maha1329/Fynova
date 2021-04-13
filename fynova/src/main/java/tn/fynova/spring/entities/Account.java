@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,9 +24,38 @@ public class Account implements Serializable {
 	private String account_balance;
 	@Temporal(TemporalType.DATE)
 	private Date account_creationDate;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private AccountType account_type;
+	private String Status;
 	
+	
+	
+	public List<Credit> getAccount_credits() {
+		return account_credits;
+	}
+
+	public void setAccount_credits(List<Credit> account_credits) {
+		this.account_credits = account_credits;
+	}
+
+	//private int nombre_de_bloquages;
+	@ManyToOne
+	private User account_user;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="credit_account")
+	private List<Credit> account_credits;
+	
+	
+	
+	
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
 	public int getAccount_id() {
 		return account_id;
 	}
@@ -67,11 +97,7 @@ public class Account implements Serializable {
 	}
 
 	
-	@ManyToOne
-	private User account_user;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="credit_account")
-	private List<Credit> account_credits;
 	
 	//@OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
 	//private List<Transaction> account_transactions;

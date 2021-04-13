@@ -12,13 +12,10 @@ public interface ITransactionService {
 
 	void deleteTransaction(int id);
 
-	
-
-	
 	List<Transaction> retrieveAllTransactions();
 
-	Optional<Transaction> retrieveTransactions(int id);
+	Transaction retrieveTransactions(int id);
 
-	 
+	  List<Transaction> listAll();
 
 }
