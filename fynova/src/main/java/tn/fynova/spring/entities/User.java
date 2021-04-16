@@ -58,6 +58,7 @@ public class User implements Serializable{
 	private Date association_fondationDate;
 	
 	private int association_customersNumber;
+	private float association_balance;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="claim_user")
@@ -71,8 +72,28 @@ public class User implements Serializable{
 	
 	
 	
+	public User(int association_fiscalNumber) {
+		super();
+		this.association_fiscalNumber = association_fiscalNumber;
+	}
+	public User(int association_fiscalNumber, String association_name, String association_description,
+			Date association_fondationDate, int association_customersNumber) {
+		super();
+		this.association_fiscalNumber = association_fiscalNumber;
+		this.association_name = association_name;
+		this.association_description = association_description;
+		this.association_fondationDate = association_fondationDate;
+		this.association_customersNumber = association_customersNumber;
+	}
 	public String getFirstname() {
 		return firstname;
+	}
+	
+	public float getAssociation_balance() {
+		return association_balance;
+	}
+	public void setAssociation_balance(float association_balance) {
+		this.association_balance = association_balance;
 	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
@@ -200,6 +221,12 @@ public class User implements Serializable{
 	}
 	public void setAssociation_customersNumber(int association_customersNumber) {
 		this.association_customersNumber = association_customersNumber;
+	}
+	@Override
+	public String toString() {
+		return "User [association_fiscalNumber=" + association_fiscalNumber + ", association_name=" + association_name
+				+ ", association_description=" + association_description + ", association_fondationDate="
+				+ association_fondationDate + ", association_customersNumber=" + association_customersNumber + "]";
 	}
 	
 	

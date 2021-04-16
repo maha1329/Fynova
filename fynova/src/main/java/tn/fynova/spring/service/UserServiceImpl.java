@@ -41,4 +41,23 @@ public class UserServiceImpl implements IUserService {
 		return user;
 	}
 
+	@Override
+	public List<User> retrieveAllAssociations() {
+		List<User> list = userRepository.retrieveAllAssociations();
+		return list;
+	}
+
+	@Override
+	public User retrieveAssociationById(int association_fiscalNumber) {
+		User u = userRepository.retrieveAssociationById(association_fiscalNumber);
+		return u;
+	}
+
+	@Override
+	public void deleteAssociationById(int association_fiscalNumber) {
+		userRepository.deleteAssociationById(association_fiscalNumber);		
+	}
+
+
+
 }
