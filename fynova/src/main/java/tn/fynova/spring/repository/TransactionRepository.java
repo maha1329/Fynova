@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import tn.fynova.spring.entities.Transaction;
-@Repository
-public interface TransactionRepository extends JpaRepository<Transaction,Integer> {
 
-	
+@Repository
+public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
+
 }

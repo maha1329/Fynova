@@ -1,12 +1,14 @@
 package tn.fynova.spring.entities;
 
+import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,28 +16,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
 public class Credit implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int credit_id;
-	
+
 	private float credit_amount;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date credit_grantDate;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date credit_deadline;
-	
+
 	private float credit_interestRate;
-	
+
+	private int step;
+
+	private int numContract;
+
+	private File contract;
+
 	@ManyToOne
 	private Account credit_account;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="transactionCredit")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionCredit")
 	private List<Transaction> transactionCredit;
+
+	@OneToMany(mappedBy = "credit", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<LogCredit> pages; 
 	
 	public int getCredit_id() {
 		return credit_id;
@@ -84,6 +97,47 @@ public class Credit implements Serializable {
 	public void setCredit_account(Account credit_account) {
 		this.credit_account = credit_account;
 	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getNumContract() {
+		return numContract;
+	}
+
+	public void setNumContract(int numContract) {
+		this.numContract = numContract;
+	}
+
+	public File getContract() {
+		return contract;
+	}
+
+	public void setContract(File contract) {
+		this.contract = contract;
+	}
+
+	public List<Transaction> getTransactionCredit() {
+		return transactionCredit;
+	}
+
+	public void setTransactionCredit(List<Transaction> transactionCredit) {
+		this.transactionCredit = transactionCredit;
+	}
+
+	public Set<LogCredit> getPages() {
+		return pages;
+	}
+
+	public void setPages(Set<LogCredit> pages) {
+		this.pages = pages;
+	}
 	
 	
+
 }

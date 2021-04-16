@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "twilio",
+      "type": "tn.fynova.spring.control.Twilioproperties",
+      "sourceType": "tn.fynova.spring.control.Twilioproperties"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

@@ -12,27 +12,47 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
 public class Transaction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int transactionid;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date transactionDate;
 
 	private float transactionAmount;
-	
+
 	@Enumerated
 	private Operation transactionType;
-	
-    @ManyToOne
+
+	@ManyToOne
 	private Credit transactionCredit;
 
-    private int nbreC;
-    private float amountC;
-    
-    
+	private int nbreC;
+	private float amountC;
+
+	private Currency currency;
+
+	private Status status;
+
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public int getNbreC() {
 		return nbreC;
 	}
@@ -63,13 +83,10 @@ public class Transaction implements Serializable {
 		this.transactionAmount = transaction_amount;
 		this.transactionType = transaction_type;
 	}
-	
 
 	public Transaction() {
 		super();
 	}
-
-	
 
 	public int getTransactionid() {
 		return transactionid;
@@ -110,6 +127,13 @@ public class Transaction implements Serializable {
 	public void setTransactionCredit(Credit transactionCredit) {
 		this.transactionCredit = transactionCredit;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Transaction [transactionid=" + transactionid + ", transactionDate=" + transactionDate
+				+ ", transactionAmount=" + transactionAmount + ", transactionType=" + transactionType
+				+ ", transactionCredit=" + transactionCredit + ", nbreC=" + nbreC + ", amountC=" + amountC
+				+ ", currency=" + currency + ", status=" + status + "]";
+	}
+
 }

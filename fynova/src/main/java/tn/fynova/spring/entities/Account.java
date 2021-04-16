@@ -15,17 +15,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
 public class Account implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int account_id;
-	private String account_balance;
+	private float account_balance;
 	@Temporal(TemporalType.DATE)
 	private Date account_creationDate;
 	@Enumerated
 	private AccountType account_type;
-	
+
 	public int getAccount_id() {
 		return account_id;
 	}
@@ -34,11 +35,11 @@ public class Account implements Serializable {
 		this.account_id = account_id;
 	}
 
-	public String getAccount_balance() {
+	public float getAccount_balance() {
 		return account_balance;
 	}
 
-	public void setAccount_balance(String account_balance) {
+	public void setAccount_balance(float account_balance) {
 		this.account_balance = account_balance;
 	}
 
@@ -66,14 +67,13 @@ public class Account implements Serializable {
 		this.account_user = account_user;
 	}
 
-	
 	@ManyToOne
 	private User account_user;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="credit_account")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "credit_account")
 	private List<Credit> account_credits;
-	
-	//@OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
-	//private List<Transaction> account_transactions;
-	
+
+	// @OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
+	// private List<Transaction> account_transactions;
+
 }

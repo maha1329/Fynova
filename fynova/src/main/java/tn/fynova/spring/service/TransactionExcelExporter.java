@@ -2,6 +2,7 @@ package tn.fynova.spring.service;
 
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import tn.fynova.spring.entities.Credit;
+import tn.fynova.spring.entities.Operation;
 import tn.fynova.spring.entities.Transaction;
 import tn.fynova.spring.repository.CreditRepository;
  
@@ -64,9 +66,17 @@ public class TransactionExcelExporter {
             cell.setCellValue((Boolean) value);
         } else if (value instanceof java.lang.Float) {
             cell.setCellValue((float) value);
-        }else {
+        }
+        else if (value instanceof Operation) {
+            cell.setCellValue((String) "credit");
+        }
+        else if (value instanceof java.util.Date) {
+            cell.setCellValue((Date) value);
+        }
+        else {
             cell.setCellValue((String) value);
         }
+        
         cell.setCellStyle(style);
     }
      
@@ -96,7 +106,7 @@ public class TransactionExcelExporter {
         }
     }
      
-    public void export(HttpServletResponse response) throws IOException {
+    public String export(HttpServletResponse response) throws IOException {
         writeHeaderLine();
         writeDataLines();
          
@@ -105,6 +115,7 @@ public class TransactionExcelExporter {
         workbook.close();
          
         outputStream.close();
+		return "succes";
          
     }
 }

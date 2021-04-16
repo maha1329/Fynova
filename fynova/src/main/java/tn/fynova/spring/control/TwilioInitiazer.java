@@ -12,19 +12,16 @@ import com.twilio.Twilio;
 @Configuration
 public class TwilioInitiazer {
 
-	 private final static Logger LOGGER = LoggerFactory.getLogger(TwilioInitiazer.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(TwilioInitiazer.class);
 
-	  private final Twilioproperties twilioproperties;
-	
+	private final Twilioproperties twilioproperties;
+
 	@Autowired
-	public TwilioInitiazer(Twilioproperties twilioproperties)
-	{
-		this.twilioproperties=twilioproperties;
+	public TwilioInitiazer(Twilioproperties twilioproperties) {
+		this.twilioproperties = twilioproperties;
 		Twilio.init(twilioproperties.getAccountSid(), twilioproperties.getAuthToken());
-        LOGGER.info("Twilio initialized ... with account sid {} ", twilioproperties.getAccountSid());
+		LOGGER.info("Twilio initialized ... with account sid {} ", twilioproperties.getAccountSid());
 
 	}
-	
-	
-	 
+
 }

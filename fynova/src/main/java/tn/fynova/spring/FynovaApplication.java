@@ -12,9 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableAutoConfiguration
+@EnableScheduling
 public class FynovaApplication {
 
 	public static void main(String[] args) {
@@ -25,6 +27,7 @@ public class FynovaApplication {
 	public ServletRegistrationBean servletRegistrationBean() {
 	FacesServlet servlet = new FacesServlet();
 	return new ServletRegistrationBean(servlet, "*.jsf"); }
+	
 	@Bean
 	public FilterRegistrationBean rewriteFilter() {
 	FilterRegistrationBean rwFilter = new FilterRegistrationBean(new RewriteFilter()); rwFilter.setDispatcherTypes(EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, 
@@ -32,4 +35,5 @@ public class FynovaApplication {
 	rwFilter.addUrlPatterns("/*");
 	return rwFilter;
 	}
+	
 }
