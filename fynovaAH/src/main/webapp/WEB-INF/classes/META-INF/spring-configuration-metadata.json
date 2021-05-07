@@ -1,0 +1,35 @@
+{
+  "groups": [
+    {
+      "name": "sms",
+      "type": "tn.fynova.spring.TwilioConfiguration",
+      "sourceType": "tn.fynova.spring.TwilioConfiguration"
+    },
+    {
+      "name": "twilio",
+      "type": "tn.fynova.spring.control.Twilioproperties",
+      "sourceType": "tn.fynova.spring.control.Twilioproperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "sms.account-sid",
+      "type": "java.lang.String",
+      "sourceType": "tn.fynova.spring.TwilioConfiguration",
+      "defaultValue": "ACaf7881cde0cfc0a7b6ba15adb9dd623e"
+    },
+    {
+      "name": "sms.auth-token",
+      "type": "java.lang.String",
+      "sourceType": "tn.fynova.spring.TwilioConfiguration",
+      "defaultValue": "a73a3212a5bcf510664d7e2076485945"
+    },
+    {
+      "name": "sms.trial-number",
+      "type": "java.lang.String",
+      "sourceType": "tn.fynova.spring.TwilioConfiguration",
+      "defaultValue": "+12676338043"
+    }
+  ],
+  "hints": []
+}
