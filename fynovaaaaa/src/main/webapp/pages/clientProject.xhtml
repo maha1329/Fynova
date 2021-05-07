@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Client Projects</title>
+</h:head>
+<h:body>
+	<script type="text/javascript">
+		//<![CDATA[
+		function start() {
+			PF('statusDialog').show();
+		}
+
+		function stop() {
+			PF('statusDialog').hide();
+		}
+		//]]>
+	</script>
+
+	<div class="card">
+		<h:form>
+
+			<div class="p-d-flex p-jc-between">
+				<div>
+					<h5>Standard</h5>
+					<p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2">
+						<p:dataExporter type="xls" target="tbl" fileName="projects" />
+					</p:commandButton>
+
+					<p:commandButton value="XLXS" styleClass="p-mr-2 p-mb-2">
+						<p:dataExporter type="xlsxstream" target="tbl" fileName="projects" />
+					</p:commandButton>
+
+					<p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+						<p:dataExporter type="pdf" target="tbl" fileName="projects" />
+					</p:commandButton>
+
+					<p:commandButton value="CSV" styleClass="p-mr-2 p-mb-2">
+						<p:dataExporter type="csv" target="tbl" fileName="projects" />
+					</p:commandButton>
+
+					<p:commandButton value="XML" styleClass="p-mr-2 p-mb-2">
+						<p:dataExporter type="xml" target="tbl" fileName="projects" />
+					</p:commandButton>
+				</div>
+			</div>
+
+
+
+			<p:dataTable id="projects" var="projects"
+				value="#{projectController.projects}"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				paginator="true" rows="10" styleClass="p-mt-2">
+				<f:facet name="header">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						<center>
+							List of Projects
+
+							<div>
+								<p:commandButton id="toggler" type="button" value="Columns"
+									icon="pi pi-align-justify" />
+								<p:columnToggler datasource="projects" trigger="toggler" />
+							</div>
+						</center>
+					</div>
+				</f:facet>
+				<p:column sortBy="#{projects.projectid}"
+					filterBy="#{projects.projectid}">
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{projects.projectid}" />
+				</p:column>
+
+				<p:column styleClass="p-text-right">
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<div class="p-field p-col-12 p-md-4">
+						<p:inputNumber id="amount" value="#{TransactionController.amount}"
+							modifyValueOnWheel="false" />
+					</div>
+					<div class="p-field p-col-12 p-md-4">
+						<p:inputNumber id="nbreC" value="#{TransactionController.nbreC}"
+							modifyValueOnWheel="false" />
+					</div>
+					<p:button value="Help" styleClass="ui-button-raised ui-button-help"
+						action="#" />
+				</p:column>
+
+
+			</p:dataTable>
+
+		</h:form>
+	</div>
+
+</h:body>
+</html>
