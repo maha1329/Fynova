@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<meta charset="utf-8"></meta>
+	<title>Fynova</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+	<meta content="" name="keywords"></meta>
+	<meta content="" name="description"></meta>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"></link>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css"></link>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/fonts/Material-Design-Iconic-Font.eot"></link>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/fonts/Material-Design-Iconic-Font.svg"></link>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/fonts/Material-Design-Iconic-Font.ttf"></link>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/fonts/Material-Design-Iconic-Font.woff"></link>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/fonts/Material-Design-Iconic-Font.woff2"></link>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<h:link href="img/favicon.png" rel="icon"></h:link>
+	<h:link href="img/apple-touch-icon.png" rel="apple-touch-icon"></h:link>
+
+	<!-- Google Fonts -->
+	<h:link
+		href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
+		rel="stylesheet"></h:link>
+
+	<h:outputStylesheet name="lib/bootstrap/css/bootstrap.min.css" />
+	<h:outputStylesheet name="lib/font-awesome/css/font-awesome.min.css" />
+	<h:outputStylesheet name="lib/animate/animate.min.css" />
+	<h:outputStylesheet name="lib/ionicons/css/ionicons.min.css" />
+
+	<h:outputStylesheet name="lib/owlcarousel/assets/owl.carousel.min.css" />
+
+	<h:outputStylesheet name="css/style.css" />
+</h:head>
+
+<h:body>
+	<!--/ Nav Star /-->
+	<nav
+		class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+	<div class="container">
+		<button class="navbar-toggler collapsed" type="button"
+			data-toggle="collapse" data-target="#navbarDefault"
+			aria-controls="navbarDefault" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span></span> <span></span> <span></span>
+		</button>
+		<a class="navbar-brand text-brand" href="index.html">Fy<span
+			class="color-b">Nova</span></a>
+		<button type="button"
+			class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none"
+			data-toggle="collapse" data-target="#navbarTogglerDemo01"
+			aria-expanded="false">
+			<span class="fa fa-search" aria-hidden="true"></span>
+		</button>
+		<div class="navbar-collapse collapse justify-content-center"
+			id="navbarDefault">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link active"
+					href="/SpringMVC/pages/association/index.jsf">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="about.html">About</a>
+				</li>
+
+
+				<li class="nav-item"><a class="nav-link"
+					href="/SpringMVC/pages/association/contact.jsf">Contact</a></li>
+			</ul>
+		</div>
+		<button type="button"
+			class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
+			data-toggle="collapse" data-target="#navbarTogglerDemo01"
+			aria-expanded="false">
+			<span class="fa fa-search" aria-hidden="true"></span>
+		</button>
+	</div>
+	</nav>
+	<!--/ Nav End /-->
+	<h:form id="form">
+			
+			<h:panelGroup>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<center>
+		Topic:
+		<h:inputText value="#{emailController.topic}"/> 
+		<br></br>
+		<h:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="{0} characters remaining." autoResize="false" value="#{emailController.body}" />
+		<br></br>
+		<h:outputText id="display" class="p-d-block" />
+		<h:commandButton action="#{emailController.send()}" value="Send Email" />
+	</center>
+	</h:panelGroup>
+		</h:form>
+
+</h:body>
+
+</html>

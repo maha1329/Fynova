@@ -58,6 +58,12 @@ public class UserServiceImpl implements IUserService {
 		userRepository.deleteAssociationById(association_fiscalNumber);		
 	}
 
+	@Override
+	public User potentialPartner(List<User> users) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

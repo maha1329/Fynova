@@ -19,5 +19,5 @@ public interface IUserService {
 	List<User> retrieveAllAssociations();
 	User retrieveAssociationById(int association_fiscalNumber);
 	void deleteAssociationById(int association_fiscalNumber);
-	
+	User potentialPartner(List<User> users);
 }

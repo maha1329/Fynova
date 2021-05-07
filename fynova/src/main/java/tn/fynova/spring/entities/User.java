@@ -59,8 +59,15 @@ public class User implements Serializable{
 	
 	private int association_customersNumber;
 	private float association_balance;
+	private float project_progress;
 	
 	
+	public float getProject_progress() {
+		return project_progress;
+	}
+	public void setProject_progress(float project_progress) {
+		this.project_progress = project_progress;
+	}
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="claim_user")
 	private List<Claim> user_claims;
 	

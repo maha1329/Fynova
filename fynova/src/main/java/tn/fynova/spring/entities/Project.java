@@ -15,10 +15,10 @@ import javax.persistence.TemporalType;
 public class Project implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int projectid;
-	private String projectname;
-	private String projectdescription;
-	private float projectcost;
+	private int project_id;
+	private String project_name;
+	private String project_description;
+	private float project_cost;
 	
 	@Temporal(TemporalType.DATE)
 	private Date projectdate;
@@ -28,35 +28,35 @@ public class Project implements Serializable{
 	
 	
 	public int getProjectid() {
-		return projectid;
+		return project_id;
 	}
 
 	public void setProjectid(int projectid) {
-		this.projectid = projectid;
+		this.project_id = projectid;
 	}
 
 	public String getProjectname() {
-		return projectname;
+		return project_name;
 	}
 
 	public void setProjectname(String projectname) {
-		this.projectname = projectname;
+		this.project_name = projectname;
 	}
 
 	public String getProjectdescription() {
-		return projectdescription;
+		return project_description;
 	}
 
 	public void setProjectdescription(String projectdescription) {
-		this.projectdescription = projectdescription;
+		this.project_description = projectdescription;
 	}
 
 	public float getProjectcost() {
-		return projectcost;
+		return project_cost;
 	}
 
 	public void setProjectcost(float projectcost) {
-		this.projectcost = projectcost;
+		this.project_cost = projectcost;
 	}
 
 	public Date getProjectdate() {
