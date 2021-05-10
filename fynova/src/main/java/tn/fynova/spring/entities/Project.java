@@ -19,13 +19,44 @@ public class Project implements Serializable{
 	private String projectname;
 	private String projectdescription;
 	private float projectcost;
+	private String categorie;
+	private int status;
 	
+	
+	
+	public Project(String projectname) {
+		super();
+		this.projectname = projectname;
+	}
+
+	public Project() {
+		super();
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getCategorie() {
+		if (this.categorie.equals("agriculture")||this.categorie.equals("entrepreneuriat")||this.categorie.equals("informatique")) {
+			return categorie;
+		}
+		return "NULL";
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
 	@Temporal(TemporalType.DATE)
 	private Date projectdate;
 
 	@ManyToOne
 	private User user_project;
-	
 	
 	public int getProjectid() {
 		return projectid;
@@ -67,13 +98,20 @@ public class Project implements Serializable{
 		this.projectdate = projectdate;
 	}
 
-	public User getUser_project() {
+	public User getUserproject() {
 		return user_project;
 	}
 
-	public void setUser_project(User user_project) {
-		this.user_project = user_project;
+	public void setUserproject(User userproject) {
+		this.user_project = userproject;
 	}
+
+	public Project(int projectid) {
+		super();
+		this.projectid = projectid;
+	}
+	
+	
 	
 	
 	

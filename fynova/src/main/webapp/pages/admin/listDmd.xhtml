@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- Mirrored from themesdesign.in/upcube/layouts/vertical/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Jul 2018 13:31:06 GMT -->
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"></meta>
+	<title>Fynova Adminitration</title>
+	<meta content="Admin Dashboard" name="description" />
+	<meta content="ThemeDesign" name="author" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link rel="shortcut icon" href="assets/images/favicon.ico"></link>
+	<h:outputStylesheet name="assets/css/bootstrap.min.css" />
+	<h:outputStylesheet name="assets/css/icons.css" />
+	<h:outputStylesheet name="assets/css/style.css" />
+
+</h:head>
+
+
+<h:body class="fixed-left">
+
+	<!-- Loader -->
+
+	<!-- Begin page -->
+	<div id="wrapper">
+
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left side-menu">
+			<button type="button"
+				class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+			</button>
+
+			<!-- LOGO -->
+			<div class="topbar-left">
+				<div class="text-center">
+					<!--<a href="index.html" class="logo">Admiry</a>-->
+					<a href="index.html" class="logo"><h:graphicImage
+							name="assets/images/FYNOVA.png" height="24" alt="logo"></h:graphicImage></a>
+				</div>
+			</div>
+
+			<div class="sidebar-inner slimscrollleft">
+
+				<div class="user-details">
+					<div class="text-center">
+						<h:graphicImage name="assets/images/users/pp.jpeg" alt=""
+							class="rounded-circle"></h:graphicImage>
+					</div>
+					<div class="user-info">
+						<h4 class="font-16">Fathallah Maha</h4>
+					</div>
+				</div>
+
+				<div id="sidebar-menu">
+					<ul>
+						<li class="menu-title">Main</li>
+
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/pages-blank.jsf"
+							class="waves-effect"> <span> Dashboard </span>
+						</a></li>
+
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/listTrans.jsf"
+							class="waves-effect"> <span> List of transaction </span>
+						</a></li>
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/statTrans.jsf"
+							class="waves-effect"> <span> Statistic of transaction
+							</span>
+						</a></li>
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/pages-blank.jsf"
+							class="waves-effect"> <span> Loan history </span>
+						</a></li>
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/pages-blank.jsf"
+							class="waves-effect"> <span>  Withdrawal Request </span>
+						</a></li>
+
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- end sidebarinner -->
+		</div>
+		<!-- Left Sidebar End -->
+		<!-- Start right Content here -->
+
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+
+				<!-- Top Bar Start -->
+
+				<!-- Top Bar End -->
+
+				<div class="page-content-wrapper ">
+
+					<div class="container-fluid">
+
+						<p:panel header="Request">
+							<h:panelGroup columns="2">
+								<h:form>
+
+									<div>
+
+
+										<p:commandButton value="EXCEL"
+											styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+											<p:dataExporter type="xls" target="transaction"
+												fileName="transaction" pageOnly="true" />
+										</p:commandButton>
+										<p:commandButton value="PDF"
+											styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+											<p:dataExporter type="pdf" target="transaction"
+												fileName="transaction" pageOnly="true" />
+										</p:commandButton>
+									</div>
+
+									<p:dataTable id="demand"
+										value="#{DmdController.dmd}" var="demand"
+										rows="10" paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+										rowsPerPageTemplate="5,10,{ShowAll|'All'}">>
+										<f:facet name="header">
+											<div class="p-d-flex p-jc-between p-ai-center">
+												List of success request 
+												<div>
+													<p:commandButton id="toggler" type="button" value="Columns"
+														icon="pi pi-align-justify" />
+													<p:columnToggler datasource="demand" trigger="toggler" />
+												</div>
+											</div>
+										</f:facet>
+									<!-- 	<p:column sortBy="#{demand.DateDemand}"
+											filterBy="#{demand.DateDemand}">
+											<f:facet name="header">
+												<h:outputText value="Date of demand" />
+											</f:facet>
+											<h:outputText value="#{demand.date_demand}" />
+										</p:column> -->
+										<p:column styleClass="p-text-right"
+											filterBy="#{demand.why}">
+											<f:facet name="header">
+												<h:outputText value="Why" />
+											</f:facet>
+											<h:outputText value="#{demand.why}" />
+										</p:column>
+										<p:column styleClass="p-text-right"
+											filterBy="#{demand.amount}">
+											<f:facet name="header">
+												<h:outputText value="Amount" />
+											</f:facet>
+											<h:outputText value="#{demand.amount}" />
+										</p:column>
+										<p:column styleClass="p-text-right"
+											filterBy="#{DmdController.getUsername(demand.userid)}">
+											<f:facet name="header">
+												<h:outputText value="Customer name" />
+											</f:facet>
+											<h:outputText value="#{DmdController.getUsername(demand.userid)}" />
+										</p:column>
+										<p:column styleClass="p-text-right">
+											<f:facet name="header">
+												<h:outputText value="Status" />
+											</f:facet>
+											<!-- <h:outputText value="#{demand.status}" /> -->
+											   <p:tag styleClass="p-mr-2" icon="pi pi-check" severity="success" value="#{demand.status}"></p:tag>
+										</p:column>
+
+
+
+									</p:dataTable>
+								</h:form>
+							</h:panelGroup>
+						</p:panel>
+						
+						<p:panel header="Request">
+							<h:panelGroup columns="2">
+								<h:form>
+
+									<div>
+
+
+										<p:commandButton value="EXCEL"
+											styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+											<p:dataExporter type="xls" target="transaction"
+												fileName="transaction" pageOnly="true" />
+										</p:commandButton>
+										<p:commandButton value="PDF"
+											styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+											<p:dataExporter type="pdf" target="transaction"
+												fileName="transaction" pageOnly="true" />
+										</p:commandButton>
+									</div>
+
+									<p:dataTable id="demand"
+										value="#{DmdController.dmdInProgress}" var="demand"
+										rows="10" paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+										rowsPerPageTemplate="5,10,{ShowAll|'All'}">>
+										<f:facet name="header">
+											<div class="p-d-flex p-jc-between p-ai-center">
+												List of Request in progress
+												<div>
+													<p:commandButton id="toggler" type="button" value="Columns"
+														icon="pi pi-align-justify" />
+													<p:columnToggler datasource="demand" trigger="toggler" />
+												</div>
+											</div>
+										</f:facet>
+									<!-- 	<p:column sortBy="#{demand.DateDemand}"
+											filterBy="#{demand.DateDemand}">
+											<f:facet name="header">
+												<h:outputText value="Date of demand" />
+											</f:facet>
+											<h:outputText value="#{demand.date_demand}" />
+										</p:column> -->
+										<p:column styleClass="p-text-right"
+											filterBy="#{demand.why}">
+											<f:facet name="header">
+												<h:outputText value="Why" />
+											</f:facet>
+											<h:outputText value="#{demand.why}" />
+										</p:column>
+										<p:column styleClass="p-text-right"
+											filterBy="#{demand.amount}">
+											<f:facet name="header">
+												<h:outputText value="Amount" />
+											</f:facet>
+											<h:outputText value="#{demand.amount}" />
+										</p:column>
+										<p:column styleClass="p-text-right"
+											filterBy="#{DmdController.getUsername(demand.userid)}">
+											<f:facet name="header">
+												<h:outputText value="Customer name" />
+											</f:facet>
+											<h:outputText value="#{DmdController.getUsername(demand.userid)}" />
+										</p:column>
+										<p:column styleClass="p-text-right">
+											<f:facet name="header">
+												<h:outputText value="Status" />
+											</f:facet>
+											<!-- <h:outputText value="#{demand.status}" /> -->
+											   <p:tag styleClass="p-mr-2" icon="pi pi-exclamation-triangle" severity="warning" value="#{demand.status}"></p:tag>
+										</p:column>
+								      <p:column>
+						               <p:commandButton  icon="pi pi-check" styleClass="rounded-button ui-button-success" 
+						               	action="#{DmdController.AcceptRetrait(demand.demandid)}" />
+                                       <p> </p>
+                                       <p:commandButton type="button" icon="pi pi-times" styleClass="rounded-button ui-button-danger" action="#{DmdController.RefusRetrait(demand.demandid)}" />
+						            </p:column>
+								   
+
+
+									</p:dataTable>
+								</h:form>
+							</h:panelGroup>
+						</p:panel>
+						
+					</div>
+					<!-- container -->
+				</div>
+				<!-- Page content Wrapper -->
+			</div>
+
+
+			<!-- content -->
+
+			<footer class="footer"> © 2018 Upcube - Crafted with by
+			Themesdesign. </footer>
+
+		</div>
+		<!-- End Right content here -->
+
+	</div>
+	<!-- END wrapper -->
+
+
+
+</h:body>
+
+</html>

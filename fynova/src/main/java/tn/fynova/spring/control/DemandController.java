@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,14 @@ public class DemandController {
 	@Autowired
 	IUserService userService;
 	
+	@GetMapping("/all/{id}")
+	@ResponseBody
+	public Demand getDemand(@PathVariable("id") int id) {
+		Demand t = demandService.retrievedemand(id);
+		return t;
+
+	}
+
 	// Conversion
 	public Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
 		return java.sql.Timestamp.valueOf(dateToConvert);

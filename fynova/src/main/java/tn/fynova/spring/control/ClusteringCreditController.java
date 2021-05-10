@@ -11,7 +11,7 @@ public class ClusteringCreditController {
 	static final Double PRECISION = 0.0;
 
     /* K-Means++ implementation, initializes K centroids from data */
-    static LinkedList<HashMap<String, Double>> kmeanspp(DataSet data, int K) {
+   /* static LinkedList<HashMap<String, Double>> kmeanspp(DataSet data, int K) {
         LinkedList<HashMap<String,Double>> centroids = new LinkedList<>();
 
         centroids.add(data.randomFromDataSet());
@@ -22,10 +22,10 @@ public class ClusteringCreditController {
 
         return centroids;
     }
-
+*/
     /* K-Means itself, it takes a dataset and a number K and adds class numbers
     * to records in the dataset */
-    static void kmeans(DataSet data, int K){
+/*      static void kmeans(DataSet data, int K){
         // Select K initial centroids
         LinkedList<HashMap<String,Double>> centroids = kmeanspp(data, K);
 
@@ -60,5 +60,5 @@ public class ClusteringCreditController {
             }
             SSE = newSSE;
         }
-    }
+    }*/
 }

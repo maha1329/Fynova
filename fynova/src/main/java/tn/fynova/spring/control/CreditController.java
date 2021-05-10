@@ -21,6 +21,7 @@ import java.util.Optional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lowagie.text.DocumentException;
 
+import tn.fynova.spring.entities.Account;
 import tn.fynova.spring.entities.Credit;
 import tn.fynova.spring.entities.LogCredit;
 import tn.fynova.spring.entities.Operation;
@@ -47,6 +48,13 @@ public class CreditController {
 		return java.sql.Timestamp.valueOf(dateToConvert);
 	}
 
+	@GetMapping("/{id}")
+	@ResponseBody
+	public Credit getCredit(@PathVariable("id") int id) {
+		Credit t= creditService.findCreditWithProject(1);	
+		return t;
+
+	}
 	// Simulation du Credit
 	@GetMapping("/export/pdf/{amount}/{interest}")
 	public String exportToPDF(HttpServletResponse response, @PathVariable("amount") float amount,
@@ -75,7 +83,7 @@ public class CreditController {
 
 	// Spring scheduler payment of bills
 
-//	@Scheduled(cron = "0/20 * * * * ?")
+	//@Scheduled(cron = "0/5 * * * * ?")
 	@PostMapping("/paybillsAuto")
 	@ResponseBody
 	public void paybills() {

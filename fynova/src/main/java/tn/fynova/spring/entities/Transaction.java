@@ -136,4 +136,5 @@ public class Transaction implements Serializable {
 				+ ", currency=" + currency + ", status=" + status + "]";
 	}
 
+	
 }

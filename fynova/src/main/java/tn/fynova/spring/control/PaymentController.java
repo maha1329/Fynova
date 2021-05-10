@@ -1,6 +1,7 @@
 package tn.fynova.spring.control;
 
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.fynova.spring.service.Response;
+import tn.fynova.spring.service.ResponsePay;
 import tn.fynova.spring.service.StripeService;
 
 @RequestMapping("/Pay")
@@ -39,19 +40,19 @@ public class PaymentController {
 
 	
 	@PostMapping("/create-charge")
-	public @ResponseBody Response createCharge(String email, String token) {
+	public @ResponseBody ResponsePay createCharge(String email, String token) {
 
 		if (token == null) {
-			return new Response(false, "Stripe payment token is missing. please try again later.");
+	    	return new ResponsePay(false, "Stripe payment token is missing. please try again later.");
 		}
 
 		String chargeId = stripeService.createCharge(email, token, 999);// 9.99 usd
 
 		if (chargeId == null) {
-			return new Response(false, "An error accurred while trying to charge.");
+			return new ResponsePay(false, "An error accurred while trying to charge.");
 		}
 
 
-		return new Response(true, "Success your charge id is " + chargeId);
+		return new ResponsePay(true, "Success your charge id is " + chargeId);
 	}
 }

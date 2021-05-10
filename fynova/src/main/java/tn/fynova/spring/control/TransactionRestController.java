@@ -72,6 +72,8 @@ public class TransactionRestController {
 		return t;
 
 	}
+	
+	
 
 	// Conversion
 	public Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
@@ -94,7 +96,7 @@ public class TransactionRestController {
 		c.setCredit_amount(sum);
 		creditService.addCredit(c);
 		transService.addTransaction(t);
-		twilioCon.sendotp("+216" + c.getCredit_account().getAccount_user().getUser_phone());
+	//	twilioCon.sendotp("+216" + c.getCredit_account().getAccount_user().getUser_phone());
 		return true;
 	}
 
@@ -121,7 +123,7 @@ public class TransactionRestController {
 	// as an employee or an administrator
 	// GetAllTransaction
 	@GetMapping("/allExcel")
-	public void exportToExcel(HttpServletResponse response) throws IOException {
+	public List<Transaction> exportToExcel(HttpServletResponse response) throws IOException {
 		response.setContentType("application/octet-stream");
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 		String currentDateTime = dateFormatter.format(new Date());
@@ -134,12 +136,13 @@ public class TransactionRestController {
 
 		TransactionExcelExporter excelExporter = new TransactionExcelExporter(listTrans);
 
-		excelExporter.export(response);
+		//excelExporter.export(response);
+		return listTrans;
 	}
 
 	// Get All Transaction For specific User
-	@GetMapping("/allExcel/{UserID}")
-	public void exportToExcelByUser(HttpServletResponse response, @PathVariable("UserID") int userId)
+	@GetMapping("/allExcelU/{UserID}")
+	public List<Transaction> exportToExcelByUser(HttpServletResponse response, @PathVariable("UserID") int userId)
 			throws IOException {
 		response.setContentType("application/octet-stream");
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -153,7 +156,8 @@ public class TransactionRestController {
 
 		TransactionExcelExporter excelExporter = new TransactionExcelExporter(listTrans);
 
-		excelExporter.export(response);
+	//	excelExporter.export(response);
+		return listTrans;
 	}
 
 	// Get All Transaction For specific Year

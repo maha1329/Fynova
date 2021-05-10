@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- Mirrored from themesdesign.in/upcube/layouts/vertical/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Jul 2018 13:31:06 GMT -->
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"></meta>
+	<title>Fynova Adminitration</title>
+	<meta content="Admin Dashboard" name="description" />
+	<meta content="ThemeDesign" name="author" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link rel="shortcut icon" href="assets/images/favicon.ico"></link>
+	<h:outputStylesheet name="assets/css/bootstrap.min.css" />
+	<h:outputStylesheet name="assets/css/icons.css" />
+	<h:outputStylesheet name="assets/css/style.css" />
+
+</h:head>
+
+<h:body class="fixed-left">
+
+				<div class="page-content-wrapper ">
+
+					<div class="container-fluid">
+
+						<p:panel header="liste des transactions">
+							<h:panelGroup columns="2">
+								<h:form>
+									<p:dataTable id="projects" var="projects"
+										value="#{projectController.projects}">
+										<f:facet name="header">
+											<div class="p-d-flex p-jc-between p-ai-center">
+												List of projects
+												<div>
+													<p:commandButton id="toggler" type="button" value="Columns"
+														icon="pi pi-align-justify" />
+													<p:columnToggler datasource="projects" trigger="toggler" />
+												</div>
+											</div>
+										</f:facet>
+										<p:column sortBy="#{projects.projectid}"
+											filterBy="#{projects.projectid}">
+											<f:facet name="header">
+												<h:outputText value="Id" />
+											</f:facet>
+											<h:outputText value="#{projects.projectid}" />
+										</p:column>
+										<p:column styleClass="p-text-right">
+											<f:facet name="header">
+												<h:outputText value="Action" />
+											</f:facet>
+											<div class="p-field p-col-12 p-md-4">
+												<p:inputNumber id="amount"
+													value="#{TransactionController.amount}"
+													modifyValueOnWheel="false" />
+											</div>
+											<div class="p-field p-col-12 p-md-4">
+												<p:inputNumber id="nbreC"
+													value="#{TransactionController.nbreC}"
+													modifyValueOnWheel="false" />
+											</div>
+											<p:commandButton id="btn" value="Invest"
+												styleClass="ui-button-secondary"
+												action="#{TransactionController.payWithCoupon(projects.projectid)}" />
+										</p:column>
+										<p:column>
+
+											<div class="card">
+												<h:form>
+													<p:commandButton value="View" icon="pi pi-home"
+														action="#{TransactionController.showMessage}"
+														styleClass="p-mr-2" />
+												</h:form>
+											</div>
+											  <p:commandButton value="Give Money" type="button" onclick="PF('dlg').show();"/>
+
+										    <h:form>
+										        <p:dialog header="Employee Selection Dialog" widgetVar="dlg" modal="true">
+										          
+										            <p:commandButton value="Submit" update="" onclick="PF('dlg').hide();"/>
+										            <p:commandButton value="View" icon="pi pi-home"	 action="#{TransactionController.showMessage}"	styleClass="p-mr-2" />
+										        </p:dialog>
+										
+										        
+										    </h:form>
+										</p:column>
+									</p:dataTable>
+								</h:form>
+							</h:panelGroup>
+						</p:panel>
+					</div>
+					<!-- container -->
+				</div>
+				<!-- Page content Wrapper -->
+		
+</h:body>
+</html>

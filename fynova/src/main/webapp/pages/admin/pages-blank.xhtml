@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- Mirrored from themesdesign.in/upcube/layouts/vertical/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Jul 2018 13:31:06 GMT -->
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"></meta>
+	<title>Fynova Adminitration</title>
+	<meta content="Admin Dashboard" name="description" />
+	<meta content="ThemeDesign" name="author" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link rel="shortcut icon" href="assets/images/favicon.ico"></link>
+	<h:outputStylesheet name="assets/css/bootstrap.min.css" />
+	<h:outputStylesheet name="assets/css/icons.css" />
+	<h:outputStylesheet name="assets/css/style.css" />
+
+</h:head>
+
+
+<h:body class="fixed-left">
+
+	<!-- Loader -->
+
+	<!-- Begin page -->
+	<div id="wrapper">
+
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left side-menu">
+			<button type="button"
+				class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+			</button>
+
+			<!-- LOGO -->
+			<div class="topbar-left">
+				<div class="text-center">
+					<!--<a href="index.html" class="logo">Admiry</a>-->
+					<a href="index.html" class="logo"><h:graphicImage
+							name="assets/images/FYNOVA.png" height="24" alt="logo"></h:graphicImage></a>
+				</div>
+			</div>
+
+			<div class="sidebar-inner slimscrollleft">
+
+				<div class="user-details">
+					<div class="text-center">
+						<h:graphicImage name="assets/images/users/pp.jpeg" alt=""
+							class="rounded-circle"></h:graphicImage>
+					</div>
+					<div class="user-info">
+						<h4 class="font-16">Fathallah Maha</h4>
+					</div>
+				</div>
+
+				<div id="sidebar-menu">
+					<ul>
+						<li class="menu-title">Main</li>
+
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/pages-blank.jsf"
+							class="waves-effect"> <span> Dashboard </span>
+						</a></li>
+
+                        <li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/listTrans.jsf"
+							class="waves-effect"> <span> List of transaction </span>
+						</a></li>
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/statTrans.jsf"
+							class="waves-effect"> <span> Statistic of transaction </span>
+						</a></li>
+							<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/Log.jsf"
+							class="waves-effect"> <span> Loan history </span>
+						</a></li>
+						<li><a
+							href="http://localhost:8085/SpringMVC/pages/admin/listDmd.jsf"
+							class="waves-effect"> <span> Withdrawal Request </span>
+						</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- end sidebarinner -->
+		</div>
+		<!-- Left Sidebar End -->
+		<!-- Start right Content here -->
+
+		<div class="content-page">
+			<!-- Start content -->
+			<div class="content">
+
+				<!-- Top Bar Start -->
+
+				<!-- Top Bar End -->
+
+				<div class="page-content-wrapper ">
+
+					<div class="container-fluid">
+
+						<p:panel header="Projects">
+							<h:panelGroup columns="2">
+								<h:form>
+									<p:dataTable id="projects" var="projects"
+										value="#{projectController.projects}">
+										<f:facet name="header">
+											<div class="p-d-flex p-jc-between p-ai-center">
+												List of projects
+												<div>
+													<p:commandButton id="toggler" type="button" value="Columns"
+														icon="pi pi-align-justify" />
+													<p:columnToggler datasource="projects" trigger="toggler" />
+												</div>
+											</div>
+										</f:facet>
+										<p:column sortBy="#{projects.projectname}"
+											filterBy="#{projects.projectname}">
+											<f:facet name="header">
+												<h:outputText value="Project Name" />
+											</f:facet>
+											<h:outputText value="#{projects.projectname}" />
+										</p:column>
+										<p:column styleClass="p-text-right">
+											<div class="card">
+												<p:pieChart
+													model="#{TransactionController.createPieModel(projects.projectcost)}"
+													style="width: 100%; height: 500px;" />
+											</div>
+											<!-- <f:facet name="header">
+												<h:outputText value="Action" />
+											</f:facet>
+											<div class="p-field p-col-12 p-md-4">
+												<p:inputNumber id="amount"
+													value="#{TransactionController.amount}"
+													modifyValueOnWheel="false" />
+											</div>
+											<div class="p-field p-col-12 p-md-4">
+												<p:inputNumber id="nbreC"
+													value="#{TransactionController.nbreC}"
+													modifyValueOnWheel="false" />
+											</div>
+											<p:commandButton id="btn" value="Invest"
+												styleClass="ui-button-secondary"
+												action="#{TransactionController.payWithCoupon(projects.projectid)}" />
+ -->
+										</p:column>
+
+										<p:column>
+											<p:commandButton value="Give Money" type="button"
+												onclick="PF('dlg').show();" />
+
+											<h:form>
+												<p:dialog header="Employee Selection Dialog" widgetVar="dlg"
+													modal="true">
+													<p:messages id="msgs" />
+
+
+													<f:facet name="header">
+														<h:outputText value="Investment" />
+													</f:facet>
+													<div class="p-field p-col-12 p-md-4">
+														<p:outputLabel for="amount" value="Amount to invest" />
+														<p:inputNumber id="amount" required="true"
+															value="#{TransactionController.amount}"
+															modifyValueOnWheel="false">
+															<f:validateLength minimum="2" />
+														</p:inputNumber>
+														<p:message for="amount" display="icon" />
+														
+													</div>
+													<div class="p-field p-col-12 p-md-4">
+														<p:outputLabel for="nbreC" value="Number of coupon" />
+														<p:inputNumber id="nbreC" required="true"
+															value="#{TransactionController.nbreC}"
+															modifyValueOnWheel="false">
+															<f:validateLength minimum="1" />
+															   <p:ajax update="msgnbreC" event="keyup"/>
+															
+														</p:inputNumber>
+														<p:message for="nbreC" id="msgnbreC" display="icon"/>
+														
+
+													</div>
+													<p:commandButton id="btn" value="Invest"
+														styleClass="ui-button-secondary"
+														action="#{TransactionController.payWithCoupon(projects.projectid)}" />
+												</p:dialog>
+											</h:form>
+										</p:column>
+									</p:dataTable>
+								</h:form>
+							</h:panelGroup>
+						</p:panel>
+					</div>
+					<!-- container -->
+				</div>
+				<!-- Page content Wrapper -->
+			</div>
+
+			<!-- <p:panel header="liste des transactions">
+				<h:panelGroup columns="2">
+					<h:form>
+						<p:dataTable value="#{TransactionController.trans}"
+							var="transaction" border="1">
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="id" />
+								</f:facet>
+								<h:outputText value="#{transaction.transactionid}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Date " />
+								</f:facet>
+								<h:outputText value="#{transaction.transactionDate}" />
+							</p:column>
+						
+						</p:dataTable>
+					</h:form>
+				</h:panelGroup>
+			</p:panel>
+			 -->
+			<!-- content -->
+
+			<footer class="footer"> © 2018 Upcube - Crafted with by
+			Themesdesign. </footer>
+
+		</div>
+		<!-- End Right content here -->
+
+	</div>
+	<!-- END wrapper -->
+
+
+
+</h:body>
+
+</html>

@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,19 +59,35 @@ public class User implements Serializable{
 	private Date association_fondationDate;
 	
 	private int association_customersNumber;
-	
+	 
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="claim_user")
 	private List<Claim> user_claims;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="account_user")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="accountuser")
 	private List<Account> user_accounts;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user_project")
 	private List<Project> user_projects;
 	
 	
+	@ManyToMany
+	private List<Groupe> groupes;
 	
+	private int accordGroup; 
+	
+	public List<Groupe> getGroupes() {
+		return groupes;
+	}
+	public void setGroupes(List<Groupe> groupes) {
+		this.groupes = groupes;
+	}
+	public int getAccordGroup() {
+		return accordGroup;
+	}
+	public void setAccordGroup(int accordGroup) {
+		this.accordGroup = accordGroup;
+	}
 	public String getFirstname() {
 		return firstname;
 	}
@@ -201,6 +218,58 @@ public class User implements Serializable{
 	public void setAssociation_customersNumber(int association_customersNumber) {
 		this.association_customersNumber = association_customersNumber;
 	}
+	@Override
+	public String toString() {
+		return "User [association_fiscalNumber=" + association_fiscalNumber + ", association_name=" + association_name
+				+ ", association_description=" + association_description + ", association_fondationDate="
+				+ association_fondationDate + ", association_customersNumber=" + association_customersNumber + "]";
+	}
+	public User(int association_fiscalNumber, String association_name, String association_description,
+			Date association_fondationDate, int association_customersNumber) {
+		super();
+		this.association_fiscalNumber = association_fiscalNumber;
+		this.association_name = association_name;
+		this.association_description = association_description;
+		this.association_fondationDate = association_fondationDate;
+		this.association_customersNumber = association_customersNumber;
+	}
 	
+	public User(int association_fiscalNumber) {
+		super();
+		this.association_fiscalNumber = association_fiscalNumber;
+	}
+	public User() {
+		super();
+	}
+	public User(int user_id, String user_password, String user_email, String user_phone, String firstname,
+			String user_lastname, int user_cin, Grade employee_grade, Date user_birthday, Role user_role, String job,
+			Origin customer_origin, int association_fiscalNumber, String association_name,
+			String association_description, Date association_fondationDate, int association_customersNumber,
+			List<Claim> user_claims, List<Account> user_accounts, List<Project> user_projects, List<Groupe> groupes,
+			int accordGroup) {
+		super();
+		this.user_id = user_id;
+		this.user_password = user_password;
+		this.user_email = user_email;
+		this.user_phone = user_phone;
+		this.firstname = firstname;
+		this.user_lastname = user_lastname;
+		this.user_cin = user_cin;
+		this.employee_grade = employee_grade;
+		this.user_birthday = user_birthday;
+		this.user_role = user_role;
+		this.job = job;
+		this.customer_origin = customer_origin;
+		this.association_fiscalNumber = association_fiscalNumber;
+		this.association_name = association_name;
+		this.association_description = association_description;
+		this.association_fondationDate = association_fondationDate;
+		this.association_customersNumber = association_customersNumber;
+		this.user_claims = user_claims;
+		this.user_accounts = user_accounts;
+		this.user_projects = user_projects;
+		this.groupes = groupes;
+		this.accordGroup = accordGroup;
+	}
 	
 }

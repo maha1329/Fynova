@@ -6,10 +6,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:p="http://primefaces.org/ui">
 
-<head>
+<h:head>
     <title>Charge</title>
     <!--Bootstrap 4 CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
@@ -20,69 +19,13 @@
 
     <!--Stripe JavaScript Library-->
     <script src="https://js.stripe.com/v3/"></script>
-</head>
-<body class="bg-light pt-5">
-
-<!--hero section-->
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-8 col-12 my-auto mx-auto">
-                <h1>
-                    Stripe One-Time Charge
-                </h1>
-                <p class="lead mb-4">
-                    Please fill the form below to complete the order payment
-                </p>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5>Leather Bag</h5>
-                        <p class="lead">USD 9.99</p>
-                    </div>
-                </div>
-                <form action="#" id="payment-form" method="post">
-                    <input id="api-key" type="hidden" th:value="${stripePublicKey}"></input>
-                    <div class="form-group">
-                        <label class="font-weight-medium" for="card-element">
-                            Enter credit or debit card below
-                        </label>
-                        <div class="w-100" id="card-element">
-                            <!-- A Stripe Element will be inserted here. -->
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="email" name="email"
-                               placeholder="Email Address" type="email" required></input>
-                    </div>
-                    <!-- Used to display Element errors. -->
-                    <div class="text-danger w-100" id="card-errors" role="alert"></div>
-                    <div class="form-group pt-2">
-                        <button class="btn btn-primary btn-block" id="submitButton" type="submit">
-                            Pay With Your Card
-                        </button>
-                        <div class="small text-muted mt-2">
-                            Pay securely with Stripe. By clicking the button above, you agree
-                            to our <a target="_blank" href="#">Terms of Service</a>,
-                            <a target="_blank" href="#">Privacy</a> and
-                            <a target="_blank" href="#">Refund</a> policies.
-
-                        </div>
-                    </div>
-
-
-                </form>
-                <p class="mt-5 text-muted">
-                    <small>An example project by <a th:href="@{https://github.com/GretiCani}" target="_blank">Greti</a>.</small>
-                    </small>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+</h:head>
+<h:body class="bg-light pt-5">
 
 <!--custom javascript for handling subscription-->
-<script>
-    $(function () {
+	<script type="text/javascript">
+	//<![CDATA[ 
+		$(function () {
         var API_KEY = $('#api-key').val();
         // Create a Stripe client.
         var stripe = Stripe(API_KEY);
@@ -135,7 +78,62 @@
             });
         }
     });
+		//]]>
 </script>
 
-</body>
+<!--hero section-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-12 my-auto mx-auto">
+                <h1>
+                    Stripe One-Time Charge
+                </h1>
+                <p class="lead mb-4">
+                    Please fill the form below to complete the order payment
+                </p>
+                <form action="#" id="payment-form" method="post">
+                    <input id="api-key" type="hidden" value="pk_test_51IapYAH3Dy6vqjqbXv6cIx8K0dAkIcF7xRKPPiFQb6aVcoOPY9CU6j1EMTRIGoKaguchGfGlGGRQqPqtG0snmwZv00YBg14UW5"></input>
+                    <div class="form-group">
+                        <label class="font-weight-medium" for="card-element">
+                            Enter credit or debit card below
+                        </label>
+                        <div class="w-100" id="card-element">
+                            <!-- A Stripe Element will be inserted here. -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p:inputText class="form-control" id="email" name="email"
+                                type="email" required="true"></p:inputText>
+                    </div>
+                    <!-- Used to display Element errors. -->
+                    <div class="text-danger w-100" id="card-errors" ></div>
+                    <div class="form-group pt-2">
+                        <button class="btn btn-primary btn-block" id="submitButton" type="submit">
+                            Pay With Your Card
+                        </button>
+                        <div>
+                        <p>      </p></div>
+                        <button class="btn btn-secondary btn-block" id="submitButton" type="submit"
+                        action="#{TransactionController.payWithCoupon(projects.projectid)}" >
+                            Return to back 
+                        </button>
+                        
+                        <div class="small text-muted mt-2">
+                            Pay securely with Stripe. By clicking the button above, you agree
+                            to our <a target="_blank" href="#">Terms of Service</a>,
+                            <a target="_blank" href="#">Privacy</a> and
+                            <a target="_blank" href="#">Refund</a> policies.
+
+                        </div>
+                    </div>
+
+
+                </form>
+               
+            </div>
+        </div>
+    </div>
+
+
+</h:body>
 </html>

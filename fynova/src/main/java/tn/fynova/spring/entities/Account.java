@@ -1,5 +1,8 @@
 package tn.fynova.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,15 +10,19 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
 @Entity
 public class Account implements Serializable {
 	@Id
@@ -24,8 +31,39 @@ public class Account implements Serializable {
 	private float account_balance;
 	@Temporal(TemporalType.DATE)
 	private Date account_creationDate;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private AccountType account_type;
+	private String Status;
+	private String etat;
+	private int nbrBloque;
+	
+	
+	
+	//private int nombre_de_bloquages;
+	@ManyToOne
+	@JsonIgnore
+	private User accountuser;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "credit_id", referencedColumnName = "credit_id")
+	private Credit credit;
+	
+	
+	public Credit getCredit() {
+		return credit;
+	}
+
+	public void setCredit(Credit credit) {
+		this.credit = credit;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
+	}
 
 	public int getAccount_id() {
 		return account_id;
@@ -59,21 +97,33 @@ public class Account implements Serializable {
 		this.account_type = account_type;
 	}
 
-	public User getAccount_user() {
-		return account_user;
+	
+
+	public User getAccountuser() {
+		return accountuser;
 	}
 
-	public void setAccount_user(User account_user) {
-		this.account_user = account_user;
+	public void setAccountuser(User accountuser) {
+		this.accountuser = accountuser;
 	}
 
-	@ManyToOne
-	private User account_user;
+	public String getEtat() {
+		return etat;
+	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "credit_account")
-	private List<Credit> account_credits;
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
 
-	// @OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
-	// private List<Transaction> account_transactions;
+	public int getNbrBloque() {
+		return nbrBloque;
+	}
 
+	public void setNbrBloque(int nbrBloque) {
+		this.nbrBloque = nbrBloque;
+	}
+
+//@OneToMany(cascade = CascadeType.ALL, mappedBy="transaction_account")
+	//private List<Transaction> account_transactions;
+	
 }

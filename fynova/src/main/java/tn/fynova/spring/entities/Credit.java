@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -38,11 +39,11 @@ public class Credit implements Serializable {
 
 	private int numContract;
 
-	private File contract;
+	
 
-	@ManyToOne
-	private Account credit_account;
-
+	@OneToOne(mappedBy = "credit")
+    private Account account;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionCredit")
 	private List<Transaction> transactionCredit;
 
@@ -90,12 +91,14 @@ public class Credit implements Serializable {
 		this.credit_interestRate = credit_interestRate;
 	}
 
-	public Account getCredit_account() {
-		return credit_account;
+	
+
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setCredit_account(Account credit_account) {
-		this.credit_account = credit_account;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public int getStep() {
@@ -114,14 +117,7 @@ public class Credit implements Serializable {
 		this.numContract = numContract;
 	}
 
-	public File getContract() {
-		return contract;
-	}
-
-	public void setContract(File contract) {
-		this.contract = contract;
-	}
-
+	
 	public List<Transaction> getTransactionCredit() {
 		return transactionCredit;
 	}

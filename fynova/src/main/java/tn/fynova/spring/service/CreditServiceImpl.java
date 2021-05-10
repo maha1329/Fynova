@@ -22,8 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.fynova.spring.entities.Account;
 import tn.fynova.spring.entities.Credit;
 import tn.fynova.spring.entities.Operation;
+import tn.fynova.spring.entities.Project;
 import tn.fynova.spring.entities.Status;
 import tn.fynova.spring.entities.Transaction;
+import tn.fynova.spring.entities.User;
+import tn.fynova.spring.repository.AccountRepository;
 import tn.fynova.spring.repository.CreditRepository;
 
 @Service
@@ -32,8 +35,18 @@ import tn.fynova.spring.repository.CreditRepository;
 public class CreditServiceImpl implements ICreditService {
 	@Autowired
 	CreditRepository creditRepository;
-    @Autowired
+	@Autowired
 	ITransactionService transService;
+	@Autowired
+	IProjectService projectService;
+
+	@Autowired
+	IAccountService accountService;
+
+	@Autowired
+	AccountRepository accountrepo;
+
+		
 	@Override
 	public Credit addCredit(Credit e) {
 		Credit credit = creditRepository.save(e);
@@ -86,7 +99,7 @@ public class CreditServiceImpl implements ICreditService {
 	@Override
 	public float val_mens(float amount, double interest, float nbre) {
 		float val_mens = 0;
-		val_mens = (float) ((amount * interest * (Math.pow(1 + interest, nbre)))
+		val_mens = (float) ((amount * interest/100 * (Math.pow(1 + interest, nbre)))
 				/ ((Math.pow(1 + interest, nbre) - 1)));
 		return val_mens;
 	}
@@ -99,7 +112,7 @@ public class CreditServiceImpl implements ICreditService {
 		float cap_restant = amount;
 		float cap_rembours = val_mens;
 		for (int i = 0; i < 3; i++) {
-			val_interest = (float) ((Interest) * cap_restant);
+			val_interest = (float) ((Interest/100) * cap_restant);
 			cap_rembours = val_mens - val_interest;
 			cap_restant = cap_restant - cap_rembours;
 			if (cap_restant < 0)
@@ -111,10 +124,10 @@ public class CreditServiceImpl implements ICreditService {
 
 		return periodes;
 	}
-    
+
 	@Override
 	public String extractToPDF(String name) {
-		String text="";
+		String text = "";
 		try {
 			File f = new File("C:\\Users\\FATHALLAH\\Documents\\lettre.pdf");
 			String parsedText;
@@ -125,32 +138,47 @@ public class CreditServiceImpl implements ICreditService {
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			PDDocument pdDoc = new PDDocument(cosDoc);
 			parsedText = pdfStripper.getText(pdDoc);
-			
+
 			PrintWriter pw = new PrintWriter("src/output/pdf.txt");
 			pw.print(parsedText);
 			pw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        return text;
+		return text;
 	}
-	
+
 	public Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
 		return java.sql.Timestamp.valueOf(dateToConvert);
 	}
 
 	@Override
-	public void PaymentDevis(int id,float price) {
-	Credit c=retrieveCredit(id);
- 	retrieveCredit(id).getCredit_account().setAccount_balance(retrieveCredit(id).getCredit_account().getAccount_balance()-price);
- 	Transaction t=new Transaction();
- 	t.setTransactionAmount(price);
- 	t.setNbreC(0);
- 	t.setStatus(Status.success);
- 	t.setTransactionDate(convertToDateViaSqlTimestamp(LocalDateTime.now()));
- 	t.setAmountC(0);
- 	t.setTransactionType(Operation.debit);
- 	transService.addTransaction(t);
- 	
+	public void PaymentDevis(int id, float price) {
+		Credit c = retrieveCredit(id);
+		retrieveCredit(id).getAccount()
+				.setAccount_balance(retrieveCredit(id).getAccount().getAccount_balance() - price);
+		Transaction t = new Transaction();
+		t.setTransactionAmount(price);
+		t.setNbreC(0);
+		t.setStatus(Status.success);
+		t.setTransactionDate(convertToDateViaSqlTimestamp(LocalDateTime.now()));
+		t.setAmountC(0);
+		t.setTransactionType(Operation.debit);
+		transService.addTransaction(t);
+
 	}
+
+	@Override
+	public Credit findCreditWithProject(int idprojet) {
+
+		Project p = projectService.retrieveProject(idprojet).get();
+		User u = p.getUserproject();
+		Account account =  accountrepo.findAllByaccountuser(u).get(0);
+		System.out.print(account.toString());
+		Credit c = account.getCredit();
+		System.out.print(c.toString());
+		return c;
+
+	}
+
 }

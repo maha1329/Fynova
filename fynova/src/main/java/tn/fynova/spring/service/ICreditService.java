@@ -3,6 +3,7 @@ package tn.fynova.spring.service;
 import java.util.List;
 import java.util.Optional;
 
+import tn.fynova.spring.entities.Account;
 import tn.fynova.spring.entities.Credit;
 
 public interface ICreditService {
@@ -23,5 +24,7 @@ public interface ICreditService {
 	String extractToPDF(String name);
 
 	void PaymentDevis(int id,float price);
+	
+	public Credit  findCreditWithProject(int idprojet);
 
 }

@@ -25,4 +25,5 @@ public interface ITransactionService {
 
 	Map<Double, Double> StatisticMonthbyAmount(int year);
 	
+	float SumTransAmount(); 
 }

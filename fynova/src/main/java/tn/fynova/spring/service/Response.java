@@ -1,41 +1,48 @@
 package tn.fynova.spring.service;
 
 public class Response {
+	private String fileName;
+    private String fileDownloadUri;
+    private String fileType;
+    private long size;
 
-	private boolean status;
-    private String details;
-    
-	public Response() {
-		super();
-		this.status = true;
-	}
+    public Response(String fileName, String fileDownloadUri, String fileType, long size) {
+        this.fileName = fileName;
+        this.fileDownloadUri = fileDownloadUri;
+        this.fileType = fileType;
+        this.size = size;
+    }
 
-	public Response(boolean status, String details) {
-		super();
-		this.status = status;
-		this.details = details;
-	}
+    public String getFileName() {
+        return fileName;
+    }
 
-	public boolean isStatus() {
-		return status;
-	}
-	
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-	
-	public String getDetails() {
-		return details;
-	}
-	
-	public void setDetails(String details) {
-		this.details = details;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	@Override
-	public String toString() {
-		return "Response [status=" + status + ", details=" + details + "]";
-	}
+    public String getFileDownloadUri() {
+        return fileDownloadUri;
+    }
 
-    
+    public void setFileDownloadUri(String fileDownloadUri) {
+        this.fileDownloadUri = fileDownloadUri;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
+    }
+
 }

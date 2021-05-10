@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -65,7 +66,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		List<Transaction> L = transactionRepository.findAll(Sort.by("transactionDate").ascending());
 		List<Transaction> ListUser = new ArrayList<Transaction>();
 		for (int i = 0; i < L.size(); i++) {
-			if (L.get(i).getTransaction_credit().getCredit_account().getAccount_user().getUser_id() == userid) {
+			if (L.get(i).getTransaction_credit().getAccount().getAccountuser().getUser_id() == userid) {
 				ListUser.add(L.get(i));
 				// System.out.print(L.get(i).toString());
 			}
@@ -186,4 +187,17 @@ public class TransactionServiceImpl implements ITransactionService {
 		return MA;
 	}
 
+	@Override
+	public float SumTransAmount() {
+		List<Transaction> transaction = (List<Transaction>) transactionRepository.findAll();
+		float sum=0;
+		
+		Iterator<Transaction> iter = transaction.iterator();
+		while (iter.hasNext()) {
+		    
+			Transaction element = iter.next(); 
+		    sum=sum+element.getTransactionAmount();
+		}
+		return sum;
+	}
 }

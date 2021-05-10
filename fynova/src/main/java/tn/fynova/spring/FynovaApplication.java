@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableScheduling
+//@EnableScheduling
 public class FynovaApplication {
 
 	public static void main(String[] args) {
